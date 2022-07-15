@@ -65,25 +65,37 @@ _____________________________
 
 Pseudocode:
 
+START
 main:
     Declarations:
     char playInput = 0;          // "\n" = continue, "q" = quit
     int endState = 0;            // 1 = Win, 2 = Lose, 3 = Tie
     int gameState = 0;           // 
     int turnNum = 0;             // incriments every turn. should end at 9
-    tile tileArray[9] = {a1, b1, c1, a2, b2, c2, a3, b3, c3}
-    char continueInput;          // "q" = quit, "y" = continue
+    tile gameBoard[9] = {a1, b1, c1, a2, b2, c2, a3, b3, c3}
+    char moveInput[2]            // Ex: a1
     char xInput;                 // a,b,c
     char yInput;                 // 1,2,3
 
+    Print: 
+        Welcome to Tic-Tac-Toe! 
+        Instructions: When prompted, input your move and press enter. 
+                      Ex: type "a1" then press "Enter"
+        Press "Enter" to continue or "q" to quit:
+    PlayOrQuit()
 
+    for (9)
+        PriintGameBoard(gameBoard);
+        PrintMovePrompt()
+        Input: moveInput
+        game.SetMoveUsr(moveInput, gameBoard);
+        game.SetMoveCptr(gameBoard);
+
+    PrintEndState(endState);
+    PrintReplayPrompt
+END
     
-    Output: Prompt to start game
-    Input: "\n" or "q"
-    If input = "q"
-        Then Exit
-    If input = "\n"
-        Then continue
+
 
 
 
