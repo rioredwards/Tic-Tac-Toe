@@ -9,9 +9,9 @@ int main()
     // char moveInput[2]            // Ex: a1
     // char xInput;                 // a,b,c
     // char yInput;                 // 1,2,3
-    char endState = 'd';            // w = win, l = lose, d = draw
-    char inX = '1';
-    char inY = 'a';
+    char endState = 'd'; // w = win, l = lose, d = draw
+    std::string xyInput = "";
+    int tileID = 0;
     Tile gameBoard[9];
 
     // Introduction to game
@@ -27,16 +27,19 @@ int main()
     // Construct gameBoard
     for (int i = 0; i < 9; i++)
     {
-        gameBoard[i].SetXPos(inX++);
-        gameBoard[i].SetYPos(inY++);
+        gameBoard[i].SetID(i + 1);
     }
 
-    // for (int i = 0; i < 9; i++)
-    // {
-    //     std::cout << gameBoard[i].GetXPos()
-    //               << gameBoard[i].GetYPos() << " "
-    //               << gameBoard[i].GetValue() << "\n";
-    // }
+    LogTiles(gameBoard);
+
+    // Your Move: Prompt -> Input -> Convert -> Place Tile
+    std::cout << "~ Your move:\n> ";
+    getline(std::cin, xyInput);
+    std::cout << "~ You Entered: " << xyInput << "\n";
+    tileID = XYtoID(xyInput);
+    PlaceTile(gameBoard, tileID, 'x');
+
+    LogTiles(gameBoard);
 
     PrintGameBoard();
 
@@ -59,21 +62,21 @@ void PrintIntro()
 bool ContinueOrQuit()
 {
     bool result = false;
-    char playInput;
+    std::string playInput;
 
     std::cout << "~ Continue? (\"y\" or \"n\")\n";
     do
     {
         std::cout << "> ";
-        std::cin >> playInput;
-        if (playInput == 'n')
+        getline(std::cin, playInput);
+        if (playInput[0] == 'n')
         {
             std::cout << "~ Quitting...\n~\n"
                       << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n\n";
             result = false;
             break;
         }
-        else if (playInput == 'y')
+        else if (playInput[0] == 'y')
         {
             std::cout << "~ Continuing...\n~\n";
             result = true;
@@ -83,7 +86,7 @@ bool ContinueOrQuit()
         {
             std::cout << "~ Invalid entry. Try again:\n";
         }
-    } while ((playInput != 'n') || (playInput != 'y'));
+    } while ((playInput[0] != 'n') || (playInput[0] != 'y'));
 
     return result;
 }
@@ -110,6 +113,65 @@ void PrintGameBoard()
     std::cout << "\n\n";
 }
 
+void PlaceTile(Tile gameBoard[], int tileID, char inputVal)
+{
+    gameBoard[tileID - 1].SetValue(inputVal);
+}
+
+// Convert XY (string) to tileID (int)
+int XYtoID(std::string inputXY)
+{
+    int tileID;
+
+    if (inputXY[0] == 'a')
+    {
+        if (inputXY[1] == '1')
+        { // a1 = 1
+            tileID = 1;
+        }
+        else if (inputXY[1] == '2')
+        { // a2 = 4
+            tileID = 4;
+        }
+        else
+        { // a3 = 7
+            tileID = 7;
+        }
+    }
+    else if (inputXY[0] == 'b')
+    {
+        if (inputXY[1] == '1')
+        { // b1 = 2
+            tileID = 2;
+        }
+        else if (inputXY[1] == '2')
+        { // b2 = 5
+            tileID = 5;
+        }
+        else
+        { // b3 = 8
+            tileID = 8;
+        }
+    }
+    else
+    {
+        if (inputXY[1] == '1')
+        { // c1 = 3
+            tileID = 3;
+        }
+        else if (inputXY[1] == '2')
+        { // c2 = 6
+            tileID = 6;
+        }
+        else
+        { // c3 = 9
+            tileID = 9;
+        }
+    }
+
+    return tileID;
+}
+
 void PrintEndState(char endState)
 {
     if (endState == 'w')
@@ -123,5 +185,15 @@ void PrintEndState(char endState)
     else
     {
         std::cout << "(Insert Neutral statement). It's a DRAW!\n";
+    }
+}
+
+// LOGGING Print out tile id's and values
+void LogTiles(Tile gameBoard[])
+{
+    for (int i = 0; i < 9; i++)
+    {
+        std::cout << gameBoard[i].GetID()
+                  << gameBoard[i].GetValue() << "\n";
     }
 }

@@ -1,12 +1,11 @@
 #pragma once
 #include <iostream>
+#include <string>
 
 class Tile
 {
 private:
     int id;     // 1-9
-    char xPos;  // 'a', 'b', 'c'
-    char yPos;  // '1', '2', '3'
     char value; // 'E' empty, 'O', 'X'
 
 public:
@@ -14,20 +13,17 @@ public:
     Tile();
 
     // Overridden Constructor
-    Tile(char xyPos[]);
-    Tile::Tile(int inputID);
+    Tile(int inputID);
+    Tile(std::string xyPos);
 
     // Setters
-    void SetID(char inputID) { id = inputID; }
-    void SetXPos(char inputX) { xPos = inputX; }
-    void SetYPos(char inputY) { yPos = inputY; }
-    void SetXYPos(char inputXY[]);
-    void SetValue(char inVal);
+    void SetID(int inputID) { id = inputID; }
+    void SetValue(char inputVal) { value = inputVal; }
+    void PlaceTile(int inputID, char inputVal);
+    // void PlaceTile(std::string inputXY, char inputVal);
 
     // Getters
     const int GetID() {return id;}
-    const char GetXPos() {return xPos;}
-    const char GetYPos() {return yPos;}
     const char GetValue() {return value;}
 
     // Setters
