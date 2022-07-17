@@ -5,22 +5,39 @@ int main()
     // int endState = 0;            // 1 = Win, 2 = Lose, 3 = Tie
     // int turnNum = 0;             // incriments every turn. should end at 9
     // int gameState = 0;
-    // tile gameBoard[9] = {a1, b1, c1, a2, b2, c2, a3, b3, c3}
+    // Tile gameBoard[9] = {a1, b1, c1, a2, b2, c2, a3, b3, c3}
     // char moveInput[2]            // Ex: a1
     // char xInput;                 // a,b,c
     // char yInput;                 // 1,2,3
     char endState = 'd';            // w = win, l = lose, d = draw
-    tile 
+    char inX = '1';
+    char inY = 'a';
+    Tile gameBoard[9];
 
     // Introduction to game
     PrintIntro();
-    
-    // Contunue playing?
-    if (ContinueOrQuit() == false) {
+
+    // Start playing?
+    if (ContinueOrQuit() == false)
+    {
         return 0;
     }
 
     // Start Game
+    // Construct gameBoard
+    for (int i = 0; i < 9; i++)
+    {
+        gameBoard[i].SetXPos(inX++);
+        gameBoard[i].SetYPos(inY++);
+    }
+
+    // for (int i = 0; i < 9; i++)
+    // {
+    //     std::cout << gameBoard[i].GetXPos()
+    //               << gameBoard[i].GetYPos() << " "
+    //               << gameBoard[i].GetValue() << "\n";
+    // }
+
     PrintGameBoard();
 
     // End Game
@@ -29,7 +46,8 @@ int main()
     return 0;
 }
 
-void PrintIntro() {
+void PrintIntro()
+{
     std::cout << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n~\n"
               << "~ Welcome to Tic-Tac-Toe!\n~\n"
               << "~ Instructions:\n"
@@ -92,14 +110,18 @@ void PrintGameBoard()
     std::cout << "\n\n";
 }
 
-void PrintEndState(char endState) {
-    if (endState == 'w') {
+void PrintEndState(char endState)
+{
+    if (endState == 'w')
+    {
         std::cout << "Congrats! You are a WINNER!\n";
     }
-    else if (endState == 'l') {
+    else if (endState == 'l')
+    {
         std::cout << "Uh oh! Looks like you're a LOSER!\n";
     }
-    else {
+    else
+    {
         std::cout << "(Insert Neutral statement). It's a DRAW!\n";
     }
 }

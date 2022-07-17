@@ -72,7 +72,7 @@ main:
     int endState = 0;            // 1 = Win, 2 = Lose, 3 = Tie
     int gameState = 0;           // 
     int turnNum = 0;             // incriments every turn. should end at 9
-    tile gameBoard[9] = {a1, b1, c1, a2, b2, c2, a3, b3, c3}
+    Tile gameBoard[9] = {a1, b1, c1, a2, b2, c2, a3, b3, c3}
     char moveInput[2]            // Ex: a1
     char xInput;                 // a,b,c
     char yInput;                 // 1,2,3
