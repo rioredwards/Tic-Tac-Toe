@@ -2,20 +2,14 @@
 
 int main()
 {
-    // int endState = 0;            // 1 = Win, 2 = Lose, 3 = Tie
-    // int turnNum = 0;             // incriments every turn. should end at 9
-    // int gameState = 0;
-    // Tile gameBoard[9] = {a1, b1, c1, a2, b2, c2, a3, b3, c3}
-    // char moveInput[2]            // Ex: a1
-    // char xInput;                 // a,b,c
-    // char yInput;                 // 1,2,3
     char endState = 'd'; // w = win, l = lose, d = draw
     std::string xyInput = "";
     int tileID = 0;
     Tile gameBoard[9];
 
-    // Introduction to game
+    // Introduction
     PrintIntro();
+    PrintGameBoard(gameBoard);
 
     // Start playing?
     if (ContinueOrQuit() == false)
@@ -23,25 +17,36 @@ int main()
         return 0;
     }
 
-    // Start Game
     // Construct gameBoard
     for (int i = 0; i < 9; i++)
     {
         gameBoard[i].SetID(i + 1);
     }
 
-    LogTiles(gameBoard);
-
-    // Your Move: Prompt -> Input -> Convert -> Place Tile
-    std::cout << "~ Your move:\n> ";
-    getline(std::cin, xyInput);
-    std::cout << "~ You Entered: " << xyInput << "\n";
-    tileID = XYtoID(xyInput);
-    PlaceTile(gameBoard, tileID, 'x');
-
-    LogTiles(gameBoard);
-
-    PrintGameBoard();
+    // Start Game
+    for (int turn = 1; turn <= 9; turn++)
+    {
+        // Your Move: Prompt -> Input -> Convert -> Place Tile
+        std::cout << "~ Your move:\n> ";
+        while (true) {
+            getline(std::cin, xyInput);
+            tileID = XYtoID(xyInput);
+            if (tileID == -1) {
+                std::cout << "Invalid Input. Please Try Again...\n";
+                std::cout << "> ";
+                continue;
+            }
+            if (gameBoard[tileID - 1].GetValue() != 'e') {
+                std::cout << "Tile Not Available. Please Try Again...\n";
+                std::cout << "> ";
+            }
+            else {
+                break;
+            }
+        }
+        PlaceTile(gameBoard, tileID, 'x');
+        PrintGameBoard(gameBoard);
+    }
 
     // End Game
     PrintEndState(endState);
@@ -58,7 +63,6 @@ void PrintIntro()
               << "~ (Ex: \"a1\" \"enter\")\n";
 }
 
-// Prompts user to continue playing game. Returns a bool.
 bool ContinueOrQuit()
 {
     bool result = false;
@@ -91,19 +95,18 @@ bool ContinueOrQuit()
     return result;
 }
 
-// TODO Add gameBoard parameter
-void PrintGameBoard()
+void PrintGameBoard(Tile gameBoard[])
 {
     std::cout << "____________________\n\n"
               << "    a   b   c\n\n";
     for (int i = 0; i < 3; i++)
     {
-        std::cout << i + 1 << "   "
-                  << "O"
+        std::cout << i + 1 << "   ";
+        std::cout << gameBoard[i].PrintValue()
                   << " | "
-                  << "O"
+                  << gameBoard[i + 3].PrintValue()
                   << " | "
-                  << "O"
+                  << gameBoard[i + 6].PrintValue()
                   << "\n";
         if (i < 2)
         {
@@ -118,7 +121,6 @@ void PlaceTile(Tile gameBoard[], int tileID, char inputVal)
     gameBoard[tileID - 1].SetValue(inputVal);
 }
 
-// Convert XY (string) to tileID (int)
 int XYtoID(std::string inputXY)
 {
     int tileID;
@@ -133,9 +135,12 @@ int XYtoID(std::string inputXY)
         { // a2 = 4
             tileID = 4;
         }
-        else
+        else if (inputXY[1] == '3')
         { // a3 = 7
             tileID = 7;
+        }
+        else {
+            tileID = -1;
         }
     }
     else if (inputXY[0] == 'b')
@@ -148,12 +153,15 @@ int XYtoID(std::string inputXY)
         { // b2 = 5
             tileID = 5;
         }
-        else
+        else if (inputXY[1] == '3')
         { // b3 = 8
             tileID = 8;
         }
+        else {
+            tileID = -1;
+        }
     }
-    else
+    else if (inputXY[0] == 'c')
     {
         if (inputXY[1] == '1')
         { // c1 = 3
@@ -163,12 +171,18 @@ int XYtoID(std::string inputXY)
         { // c2 = 6
             tileID = 6;
         }
-        else
+        else if (inputXY[1] == '3')
         { // c3 = 9
             tileID = 9;
         }
+        else {
+            tileID = -1;
+        }
     }
-
+    else
+    {
+        tileID = -1;
+    }
     return tileID;
 }
 
@@ -188,7 +202,6 @@ void PrintEndState(char endState)
     }
 }
 
-// LOGGING Print out tile id's and values
 void LogTiles(Tile gameBoard[])
 {
     for (int i = 0; i < 9; i++)

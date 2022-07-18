@@ -5,7 +5,7 @@
 
 int main();
 void PrintIntro();
-void PrintGameBoard();
+void PrintGameBoard(Tile gameBoard[]);
 bool ContinueOrQuit();
 int XYtoID(std::string inputXY);
 void PlaceTile(Tile gameBoard[], int tileID, char inputVal);
