@@ -15,9 +15,11 @@ int main()
     // }
 
     // Start Game
-    for (int turn = 1; turn <= 9; turn++)
+    while (myBoard.GetMoveNum() <= 9)
     {
+        myBoard.LogEmptyTiles();
         myBoard.UserMove();
+        // myBoard.CompMove();
     }
 
     // End Game
