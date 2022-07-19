@@ -3,7 +3,8 @@
 // Default Constructor
 GameBoard::GameBoard()
 {
-    emptyTiles = new int[9];
+    emptyTilesSize = 9;
+    emptyTiles = new int[emptyTilesSize];
     for (int i = 0; i < 9; i++)
     {
         tileArray[i].SetID(i + 1);
@@ -55,7 +56,6 @@ void GameBoard::UserMove()
     {
         getline(std::cin, xyInput);
         tileID = XYtoID(xyInput);
-        std::cout << tileArray[tileID - 1].GetValue() << "\n";
         if (tileID == -1)
         {
             std::cout << "Invalid Input. Please Try Again...\n";
@@ -97,11 +97,19 @@ void GameBoard::RemoveEmptyTile(int tileID)
 {
     LogEmptyTiles();
     int *newEmptyTiles;
-    int numEmptyTiles = (9 - moveNum);
-    newEmptyTiles = new int[numEmptyTiles - 1];
-    for (int i = 0; i < numEmptyTiles - 1; i++)
+    int delIdx = 0;
+
+    // Search Loop
+    while (tileID != emptyTiles[delIdx]) {
+        delIdx++;
+    }
+
+    // Remove Loop
+    newEmptyTiles = new int[emptyTilesSize - 1];
+    emptyTiles[tileID - 1] = 0;
+    for (int i = 0; i < emptyTilesSize - 1; i++)
     {
-        if (i < (tileID - 1))
+        if (i < delIdx)
         {
             newEmptyTiles[i] = emptyTiles[i];
         }
@@ -109,10 +117,11 @@ void GameBoard::RemoveEmptyTile(int tileID)
         {
             newEmptyTiles[i] = emptyTiles[i + 1];
         }
-        delete[] emptyTiles;
-        emptyTiles = newEmptyTiles;
-        newEmptyTiles = nullptr;
     }
+    delete[] emptyTiles;
+    emptyTiles = newEmptyTiles;
+    newEmptyTiles = nullptr;
+    emptyTilesSize--;
     LogEmptyTiles();
 }
 
@@ -209,6 +218,7 @@ const void GameBoard::PrintEndState()
 
 void GameBoard::LogTiles()
 {
+    std::cout << "Logging Tiles: \n";
     for (int i = 0; i < 9; i++)
     {
         std::cout << tileArray[i].GetID()
@@ -218,7 +228,8 @@ void GameBoard::LogTiles()
 
 void GameBoard::LogEmptyTiles()
 {
-    for (int i = 0; i < 9; i++)
+    std::cout << "Logging Empty Tiles: \n";
+    for (int i = 0; i < emptyTilesSize; i++)
     {
         std::cout << emptyTiles[i] << "\n";
     }

@@ -17,7 +17,6 @@ int main()
     // Start Game
     while (myBoard.GetMoveNum() <= 9)
     {
-        myBoard.LogEmptyTiles();
         myBoard.UserMove();
         // myBoard.CompMove();
     }

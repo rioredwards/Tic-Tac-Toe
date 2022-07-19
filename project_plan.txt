@@ -96,6 +96,28 @@ main:
 END
     
 
+Dealing with emptyTiles Array:
+
+- start at 9
+- decrease size by 1 each turn
+- values are the ID's of the empty Tiles
+
+pseudocode:
+emptyTiles: 1, 2, 3, 4, 5, 6, 7, 8, 9
+play: a1                            (ID 1)
+emptyTiles: 2, 3, 4, 5, 6, 7, 8, 9  (delete index 0) (size = 8)
+play: b2                            (ID 5)
+emptyTiles: 2, 3, 4, 6, 7, 8, 9     (delete index 3) (size = 7)
+play: c2                            (ID 6)
+emptyTiles: 2, 3, 4, 7, 8, 9        (delete index 3) (size = 6)
+play: a2                            (ID 4)
+emptyTiles: 2, 3, 7, 8, 9           (delete index 2) (size = 5)
+
+find Index to delete
+int delIdx;
+loop numEmptyTiles--
+    if ()
+        newEmptyTiles = 
 
 
 

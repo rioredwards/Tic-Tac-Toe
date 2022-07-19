@@ -9,6 +9,7 @@ private:
     // Private Data Members
     Tile tileArray[9];
     int *emptyTiles;
+    int emptyTilesSize;
     int moveNum;
     char endState; // w = win, l = lose, d = draw
 
