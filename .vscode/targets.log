@@ -6,11 +6,13 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
+ 
 
-# Make data base, printed on Mon Jul 18 15:02:15 2022
+# Make data base, printed on Mon Jul 18 16:35:08 2022
 
 # Variables
 
+ 
 # automatic
 <D = $(patsubst %/,%,$(dir $<))
 # automatic
@@ -96,6 +98,7 @@ MAKE_COMMAND := /Library/Developer/CommandLineTools/usr/bin/make
 # environment
 TMPDIR = /var/folders/y2/df7q2hj11wbg6ygt7sr89wcw0000gn/T/
 # automatic
+ 
 *F = $(notdir $*)
 # environment
 VSCODE_IPC_HOOK = /Users/rioedwards/Library/Application Support/Code/1.69.2-main.sock
@@ -190,6 +193,7 @@ all: gameBoard.h main.h tile.h gameBoard.cpp main.cpp tile.cpp
 # automatic
 # * := 
 # automatic
+ 
 # + := gameBoard.h main.h tile.h gameBoard.cpp main.cpp tile.cpp
 # automatic
 # | := 
@@ -232,7 +236,7 @@ makefile:
 # Not a target:
 main.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-18 14:12:30
+#  Last modified 2022-07-18 15:59:39
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -275,6 +279,6 @@ gameBoard.h:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Mon Jul 18 15:02:15 2022
+# Finished Make data base on Mon Jul 18 16:35:08 2022
 
  

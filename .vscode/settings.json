@@ -54,5 +54,12 @@
         "fstream": "cpp",
         "iomanip": "cpp",
         "stack": "cpp"
-    }
+    },
+    "makefile.launchConfigurations": [
+        {
+            "cwd": "/Users/rioedwards/Documents/GitHub/Tic-Tac-Toe",
+            "binaryPath": "/Users/rioedwards/Documents/GitHub/Tic-Tac-Toe/main",
+            "binaryArgs": []
+        }
+    ]
 }
