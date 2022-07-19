@@ -24,10 +24,12 @@ public:
     // Public Member Functions
     GameBoard();
     ~GameBoard();
-    const void PrintGameBoard();
-    const void PrintEndState();
     void UserMove();
     void CompMove();
+    int CheckWinState();
+
+    const void PrintGameBoard();
+    const void PrintEndState();
 
     const int GetMoveNum() { return moveNum; }
     const int GetEmptyTilesSize() { return emptyTilesSize; }

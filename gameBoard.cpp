@@ -140,6 +140,102 @@ void GameBoard::PlaceTile(int tileID, char inputVal)
     moveNum++;
 }
 
+// Returns 0 if no win and 1 if win
+int GameBoard::CheckWinState()
+{
+    if (moveNum >= 5)
+    {
+        // 1's, 2's and 3's in a Row
+        for (int i = 0; i < 9; i = +3)
+        {
+            if (tileArray[i].GetValue() == tileArray[i + 1].GetValue() && tileArray[i + 1].GetValue() == tileArray[i + 2].GetValue())
+            {
+                if (tileArray[i].GetValue() == 'e')
+                {
+                    // Do Nothing
+                }
+                else if (tileArray[i].GetValue() == 'O')
+                {
+                    endState = 'w';
+                }
+                else if (tileArray[i].GetValue() == 'X')
+                {
+                    endState = 'l';
+                }
+            }
+        }
+        // a's, b's and c's in a Row
+        for (int i = 0; i < 3; i++)
+        {
+            if (tileArray[i].GetValue() == tileArray[i + 3].GetValue() && tileArray[i + 3].GetValue() == tileArray[i + 6].GetValue())
+            {
+                if (tileArray[i].GetValue() == 'e')
+                {
+                    // Do Nothing
+                }
+                else if (tileArray[i].GetValue() == 'O')
+                {
+                    endState = 'w';
+                }
+                else if (tileArray[i].GetValue() == 'X')
+                {
+                    endState = 'l';
+                }
+            }
+        }
+        // diagonal 1 in a Row
+        if (tileArray[0].GetValue() == tileArray[4].GetValue() && tileArray[4].GetValue() == tileArray[8].GetValue())
+        {
+            if (tileArray[0].GetValue() == 'e')
+            {
+                // Do Nothing
+            }
+            else if (tileArray[0].GetValue() == 'O')
+            {
+                endState = 'w';
+            }
+            else if (tileArray[0].GetValue() == 'X')
+            {
+                endState = 'l';
+            }
+        }
+        // diagonal 2 in a Row
+        if (tileArray[2].GetValue() == tileArray[4].GetValue() && tileArray[4].GetValue() == tileArray[6].GetValue())
+        {
+            if (tileArray[2].GetValue() == 'e')
+            {
+                // Do Nothing
+            }
+            else if (tileArray[2].GetValue() == 'O')
+            {
+                endState = 'w';
+            }
+            else if (tileArray[2].GetValue() == 'X')
+            {
+                endState = 'l';
+            }
+        }
+    }
+    if (endState != 'd') {
+        return 1;
+    }
+    else {
+        return 0;
+    }
+
+    // 3 in a row combinations:
+    // 1's: 1, 2, 3
+    // 2's: 4, 5, 6
+    // 3's: 7, 8, 9
+
+    // a's: 1, 4, 7
+    // b's: 2, 5, 8
+    // c's: 3, 6, 9
+
+    // diagonal 1: 1, 5, 9
+    // diagonal 2: 3, 5, 7
+}
+
 int GameBoard::XYtoID(std::string inputXY)
 {
     int tileID;

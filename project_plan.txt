@@ -120,6 +120,42 @@ loop numEmptyTiles--
         newEmptyTiles = 
 
 
+Checking WinState:
+
+    a   b   c
+
+1   X | O | O
+   ---+---+---
+2     | O | X 
+   ---+---+---
+3   O |   |   
+
+a1 = 1
+a2 = 4
+a3 = 7
+b1 = 2
+b2 = 5
+b3 = 8
+c1 = 3
+c2 = 6
+c3 = 9
+
+3 in a row combinations:
+1's: 1, 2, 3
+2's: 4, 5, 6
+3's: 7, 8, 9
+
+a's: 1, 4, 7
+b's: 2, 5, 8
+c's: 3, 6, 9
+
+diagonal 1: 1, 5, 9
+diagonal 2: 3, 5, 7
+
+turns before check needed: 5 (3 user, 2 comp)
+
+
+
 
 Notes:
 From Tic-tac-toe wiki: https://en.wikipedia.org/wiki/Tic-tac-toe

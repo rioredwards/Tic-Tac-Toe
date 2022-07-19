@@ -18,7 +18,13 @@ int main()
     while (myBoard.GetMoveNum() <= 9)
     {
         myBoard.UserMove();
+        if (myBoard.CheckWinState() == 1) {
+            break;
+        }
         myBoard.CompMove();
+        if (myBoard.CheckWinState() == 1) {
+            break;
+        }
     }
 
     // End Game
