@@ -92,10 +92,12 @@ void GameBoard::CompMove()
 
 int GameBoard::CompChooseTileID()
 {
-    int resultID = 0;
+    srand(time(0));
+    int randNum = rand();
     int randIdx = 0;
+    int resultID = 0;
 
-    randIdx = (std::rand() % (emptyTilesSize - 1));
+    randIdx = ((randNum / 2) % (emptyTilesSize - 1));
     resultID = emptyTiles[randIdx];
 
     return resultID;
