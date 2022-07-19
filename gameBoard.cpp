@@ -3,6 +3,7 @@
 // Default Constructor
 GameBoard::GameBoard()
 {
+    std::srand(std::time(0));
     emptyTilesSize = 9;
     emptyTiles = new int[emptyTilesSize];
     for (int i = 0; i < 9; i++)
@@ -78,35 +79,41 @@ void GameBoard::UserMove()
 
 void GameBoard::CompMove()
 {
-    int tileID = 0;
-    int *emptyTiles;
+    if (GetEmptyTilesSize() != 0)
+    {
+        int tileID = 0;
 
-    std::cout << "Computer Move\n";
-    // emptyTiles = GetEmptyTiles();
-    // ChooseTile();
-
-    PlaceTile(tileID, 'X');
-    PrintGameBoard();
+        std::cout << "Computer Move\n";
+        tileID = CompChooseTileID();
+        PlaceTile(tileID, 'X');
+        PrintGameBoard();
+    }
 }
 
-// int *GameBoard::GetEmptyTiles()
-// {
-// }
+int GameBoard::CompChooseTileID()
+{
+    int resultID = 0;
+    int randIdx = 0;
+
+    randIdx = (std::rand() % (emptyTilesSize - 1));
+    resultID = emptyTiles[randIdx];
+
+    return resultID;
+}
 
 void GameBoard::RemoveEmptyTile(int tileID)
 {
-    LogEmptyTiles();
     int *newEmptyTiles;
     int delIdx = 0;
 
     // Search Loop
-    while (tileID != emptyTiles[delIdx]) {
+    while (tileID != emptyTiles[delIdx])
+    {
         delIdx++;
     }
 
     // Remove Loop
     newEmptyTiles = new int[emptyTilesSize - 1];
-    // emptyTiles[tileID - 1] = 0;
     for (int i = 0; i < emptyTilesSize - 1; i++)
     {
         if (i < delIdx)
@@ -122,7 +129,6 @@ void GameBoard::RemoveEmptyTile(int tileID)
     emptyTiles = newEmptyTiles;
     newEmptyTiles = nullptr;
     emptyTilesSize--;
-    LogEmptyTiles();
 }
 
 void GameBoard::PlaceTile(int tileID, char inputVal)

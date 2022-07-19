@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <ctime>    // Enables use of time() function
 #include "tile.h"
 
 class GameBoard
@@ -16,7 +17,7 @@ private:
     // Private Helper Functions
     int XYtoID(std::string inputXY);
     void PlaceTile(int tileID, char inputVal);
-    // int *GetEmptyTiles();
+    int CompChooseTileID();
     void RemoveEmptyTile(int tileID);
 
 public:
@@ -29,6 +30,7 @@ public:
     void CompMove();
 
     const int GetMoveNum() { return moveNum; }
+    const int GetEmptyTilesSize() { return emptyTilesSize; }
 
     void LogTiles();
     void LogEmptyTiles();
