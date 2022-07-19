@@ -18,7 +18,7 @@ int main()
     while (myBoard.GetMoveNum() <= 9)
     {
         myBoard.UserMove();
-        // myBoard.CompMove();
+        myBoard.CompMove();
     }
 
     // End Game
