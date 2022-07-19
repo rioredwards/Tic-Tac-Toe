@@ -106,7 +106,7 @@ void GameBoard::RemoveEmptyTile(int tileID)
 
     // Remove Loop
     newEmptyTiles = new int[emptyTilesSize - 1];
-    emptyTiles[tileID - 1] = 0;
+    // emptyTiles[tileID - 1] = 0;
     for (int i = 0; i < emptyTilesSize - 1; i++)
     {
         if (i < delIdx)
