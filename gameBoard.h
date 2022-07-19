@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 #include <ctime>    // Enables use of time() function
+#include <unistd.h> // Enables sleep() fucntion
 #include "tile.h"
 
 class GameBoard
@@ -28,6 +29,7 @@ public:
     void CompMove();
     int CheckWinState();
 
+    void ClearScreen(int lines);
     const void PrintGameBoard();
     const void PrintEndState();
 

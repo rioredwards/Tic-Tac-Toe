@@ -28,10 +28,10 @@ const void GameBoard::PrintGameBoard()
 {
     int pos = 0;
     std::cout << "____________________\n\n"
-              << "    a   b   c\n\n";
+              << "     a   b   c\n\n";
     for (int i = 0; i < 3; i++)
     {
-        std::cout << i + 1 << "   ";
+        std::cout << " " << i + 1 << "   ";
         std::cout << tileArray[pos].PrintValue()
                   << " | "
                   << tileArray[pos + 1].PrintValue()
@@ -40,19 +40,20 @@ const void GameBoard::PrintGameBoard()
                   << "\n";
         if (i < 2)
         {
-            std::cout << "   ---+---+---\n";
+            std::cout << "    ---+---+---\n";
         }
         pos += 3;
     }
     std::cout << "\n\n";
+    sleep(1);                   //sleeps for 1 second
 }
 
 // Your Move: Prompt -> Input -> Convert -> Place Tile
 void GameBoard::UserMove()
 {
     std::string xyInput = "";
-    std::cout << "~ Your move:\n> ";
     int tileID = 0;
+    std::cout << "~ Your move:\n> ";
     while (true)
     {
         getline(std::cin, xyInput);
@@ -83,9 +84,10 @@ void GameBoard::CompMove()
     {
         int tileID = 0;
 
-        std::cout << "Computer Move\n";
+        // std::cout << "~ Computer Move\n";
         tileID = CompChooseTileID();
         PlaceTile(tileID, 'X');
+        // sleep(1);                   //sleeps for 1 second
         PrintGameBoard();
     }
 }
@@ -143,11 +145,16 @@ void GameBoard::PlaceTile(int tileID, char inputVal)
 // Returns 0 if no win and 1 if win
 int GameBoard::CheckWinState()
 {
-    if (moveNum >= 5)
+    bool go = true;
+    if (moveNum >= 6)
     {
         // 1's, 2's and 3's in a Row
-        for (int i = 0; i < 9; i = +3)
+        for (int i = 0; i < 9; i += 3)
         {
+            if (go == false)
+            {
+                break;
+            }
             if (tileArray[i].GetValue() == tileArray[i + 1].GetValue() && tileArray[i + 1].GetValue() == tileArray[i + 2].GetValue())
             {
                 if (tileArray[i].GetValue() == 'e')
@@ -157,16 +164,22 @@ int GameBoard::CheckWinState()
                 else if (tileArray[i].GetValue() == 'O')
                 {
                     endState = 'w';
+                    go = false;
                 }
                 else if (tileArray[i].GetValue() == 'X')
                 {
                     endState = 'l';
+                    go = false;
                 }
             }
         }
         // a's, b's and c's in a Row
         for (int i = 0; i < 3; i++)
         {
+            if (go == false)
+            {
+                break;
+            }
             if (tileArray[i].GetValue() == tileArray[i + 3].GetValue() && tileArray[i + 3].GetValue() == tileArray[i + 6].GetValue())
             {
                 if (tileArray[i].GetValue() == 'e')
@@ -176,50 +189,57 @@ int GameBoard::CheckWinState()
                 else if (tileArray[i].GetValue() == 'O')
                 {
                     endState = 'w';
+                    go = false;
                 }
                 else if (tileArray[i].GetValue() == 'X')
+                {
+                    endState = 'l';
+                    go = false;
+                }
+            }
+        }
+        if (go != false)
+        {
+            // diagonal 1 in a Row
+            if (tileArray[0].GetValue() == tileArray[4].GetValue() && tileArray[4].GetValue() == tileArray[8].GetValue())
+            {
+                if (tileArray[0].GetValue() == 'e')
+                {
+                    // Do Nothing
+                }
+                else if (tileArray[0].GetValue() == 'O')
+                {
+                    endState = 'w';
+                }
+                else if (tileArray[0].GetValue() == 'X')
+                {
+                    endState = 'l';
+                }
+            }
+            // diagonal 2 in a Row
+            if (tileArray[2].GetValue() == tileArray[4].GetValue() && tileArray[4].GetValue() == tileArray[6].GetValue())
+            {
+                if (tileArray[2].GetValue() == 'e')
+                {
+                    // Do Nothing
+                }
+                else if (tileArray[2].GetValue() == 'O')
+                {
+                    endState = 'w';
+                }
+                else if (tileArray[2].GetValue() == 'X')
                 {
                     endState = 'l';
                 }
             }
         }
-        // diagonal 1 in a Row
-        if (tileArray[0].GetValue() == tileArray[4].GetValue() && tileArray[4].GetValue() == tileArray[8].GetValue())
-        {
-            if (tileArray[0].GetValue() == 'e')
-            {
-                // Do Nothing
-            }
-            else if (tileArray[0].GetValue() == 'O')
-            {
-                endState = 'w';
-            }
-            else if (tileArray[0].GetValue() == 'X')
-            {
-                endState = 'l';
-            }
-        }
-        // diagonal 2 in a Row
-        if (tileArray[2].GetValue() == tileArray[4].GetValue() && tileArray[4].GetValue() == tileArray[6].GetValue())
-        {
-            if (tileArray[2].GetValue() == 'e')
-            {
-                // Do Nothing
-            }
-            else if (tileArray[2].GetValue() == 'O')
-            {
-                endState = 'w';
-            }
-            else if (tileArray[2].GetValue() == 'X')
-            {
-                endState = 'l';
-            }
-        }
     }
-    if (endState != 'd') {
+    if (endState != 'd')
+    {
         return 1;
     }
-    else {
+    else
+    {
         return 0;
     }
 
@@ -308,15 +328,24 @@ const void GameBoard::PrintEndState()
 {
     if (endState == 'w')
     {
-        std::cout << "Congrats! You are a WINNER!\n";
+        std::cout << "~ Congrats! You are a WINNER!\n";
     }
     else if (endState == 'l')
     {
-        std::cout << "Uh oh! Looks like you're a LOSER!\n";
+        std::cout << "~ Uh oh! Looks like you're a LOSER!\n";
     }
     else
     {
-        std::cout << "(Insert Neutral statement). It's a DRAW!\n";
+        std::cout << "~ (Insert Neutral statement). It's a DRAW!\n";
+    }
+    sleep(2);
+}
+
+void GameBoard::ClearScreen(int lines)
+{
+    for (int i = 0; i < lines; i++)
+    {
+        std::cout << "~\n";
     }
 }
 

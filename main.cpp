@@ -4,11 +4,12 @@ int main()
 {
     GameBoard myBoard;
 
+    myBoard.ClearScreen(40);
     // Introduction
     PrintIntro();
     myBoard.PrintGameBoard();
 
-    // Start playing?
+    // // Start playing?
     // if (ContinueOrQuit() == false)
     // {
     //     return 0;
@@ -18,11 +19,13 @@ int main()
     while (myBoard.GetMoveNum() <= 9)
     {
         myBoard.UserMove();
-        if (myBoard.CheckWinState() == 1) {
+        if (myBoard.CheckWinState() == 1)
+        {
             break;
         }
         myBoard.CompMove();
-        if (myBoard.CheckWinState() == 1) {
+        if (myBoard.CheckWinState() == 1)
+        {
             break;
         }
     }
@@ -35,11 +38,14 @@ int main()
 
 void PrintIntro()
 {
-    std::cout << "\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n~\n"
-              << "~ Welcome to Tic-Tac-Toe!\n~\n"
-              << "~ Instructions:\n"
-              << "~ When prompted, input your move, then press enter.\n"
-              << "~ (Ex: \"a1\" \"enter\")\n";
+    std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n~\n"
+              << "~          Welcome to Tic-Tac-Toe!\n~\n";
+    sleep(2);
+    std::cout << "~          Instructions:\n"
+              << "~          When prompted, input your move, then press enter.\n"
+              << "~          (Ex: \"a1\" \"enter\")\n"
+              << "~\n";
+    sleep(3);
 }
 
 bool ContinueOrQuit()
