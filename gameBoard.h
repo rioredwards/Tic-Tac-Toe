@@ -29,7 +29,7 @@ public:
     void CompMove();
     int CheckWinState();
 
-    void ClearScreen(int lines);
+    void PrintNewlines(int lines);
     const void PrintGameBoard();
     const void PrintEndState();
 

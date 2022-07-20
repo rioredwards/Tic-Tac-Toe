@@ -4,26 +4,51 @@ int main()
 {
     GameBoard myBoard;
 
-    myBoard.ClearScreen(40);
-    // Introduction
-    PrintIntro();
-    myBoard.PrintGameBoard();
-
-    // // Start playing?
-    // if (ContinueOrQuit() == false)
-    // {
-    //     return 0;
-    // }
+    // Intro Screen
+    PrintNewScreen();
+    std::cout << "~               Welcome to Tic-Tac-Toe!\n";
+    PrintNewlines(12);
+    sleep(2);
+    
+    // Instructions Screen
+    PrintNewScreen();
+    std::cout << "~               Instructions:\n"
+              << "~               When prompted, input your move, then press enter.\n"
+              << "~               (Ex: \"a1\" \"enter\")\n";
+    PrintNewlines(10);
+    sleep(3);
 
     // Start Game
     while (myBoard.GetMoveNum() <= 9)
     {
+        // User Move Prompt
+        PrintNewScreen();
+        myBoard.PrintGameBoard();
+        PrintNewlines(5);
+        std::cout << "~                  Your move:\n"
+                  << "~                  > ";
         myBoard.UserMove();
+        // User Move Print
+        PrintNewScreen();
+        myBoard.PrintGameBoard();
+        PrintNewlines(6);
+        sleep(1);
         if (myBoard.CheckWinState() == 1)
         {
             break;
         }
+        // Computer Move Prompt
+        PrintNewScreen();
+        myBoard.PrintGameBoard();
+        PrintNewlines(5);
+        std::cout << "~                  Computer move:\n";
+        sleep(1);
+        // Computer Move Print
+        PrintNewScreen();
         myBoard.CompMove();
+        myBoard.PrintGameBoard();
+        PrintNewlines(6);
+        sleep(1);
         if (myBoard.CheckWinState() == 1)
         {
             break;
@@ -36,16 +61,20 @@ int main()
     return 0;
 }
 
-void PrintIntro()
+void PrintNewlines(int lines)
 {
-    std::cout << "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n~\n"
-              << "~          Welcome to Tic-Tac-Toe!\n~\n";
-    sleep(2);
-    std::cout << "~          Instructions:\n"
-              << "~          When prompted, input your move, then press enter.\n"
-              << "~          (Ex: \"a1\" \"enter\")\n"
-              << "~\n";
-    sleep(3);
+    for (int i = 0; i < lines; i++)
+    {
+        std::cout << "~\n";
+    }
+}
+
+void PrintNewScreen()
+{
+    for (int i = 0; i < 30; i++)
+    {
+        std::cout << "~\n";
+    }
 }
 
 bool ContinueOrQuit()

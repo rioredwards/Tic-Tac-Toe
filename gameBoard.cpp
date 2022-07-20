@@ -27,11 +27,10 @@ GameBoard::~GameBoard()
 const void GameBoard::PrintGameBoard()
 {
     int pos = 0;
-    std::cout << "____________________\n\n"
-              << "     a   b   c\n\n";
+    std::cout << "~                    a   b   c\n~\n";
     for (int i = 0; i < 3; i++)
     {
-        std::cout << " " << i + 1 << "   ";
+        std::cout << "~                " << i + 1 << "   ";
         std::cout << tileArray[pos].PrintValue()
                   << " | "
                   << tileArray[pos + 1].PrintValue()
@@ -40,12 +39,10 @@ const void GameBoard::PrintGameBoard()
                   << "\n";
         if (i < 2)
         {
-            std::cout << "    ---+---+---\n";
+            std::cout << "~                   ---+---+---\n";
         }
         pos += 3;
     }
-    std::cout << "\n\n";
-    sleep(1);                   //sleeps for 1 second
 }
 
 // Your Move: Prompt -> Input -> Convert -> Place Tile
@@ -53,7 +50,6 @@ void GameBoard::UserMove()
 {
     std::string xyInput = "";
     int tileID = 0;
-    std::cout << "~ Your move:\n> ";
     while (true)
     {
         getline(std::cin, xyInput);
@@ -75,7 +71,6 @@ void GameBoard::UserMove()
         }
     }
     PlaceTile(tileID, 'O');
-    PrintGameBoard();
 }
 
 void GameBoard::CompMove()
@@ -83,12 +78,8 @@ void GameBoard::CompMove()
     if (GetEmptyTilesSize() != 0)
     {
         int tileID = 0;
-
-        // std::cout << "~ Computer Move\n";
         tileID = CompChooseTileID();
         PlaceTile(tileID, 'X');
-        // sleep(1);                   //sleeps for 1 second
-        PrintGameBoard();
     }
 }
 
@@ -341,7 +332,7 @@ const void GameBoard::PrintEndState()
     sleep(2);
 }
 
-void GameBoard::ClearScreen(int lines)
+void GameBoard::PrintNewlines(int lines)
 {
     for (int i = 0; i < lines; i++)
     {

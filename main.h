@@ -6,5 +6,6 @@
 #include "gameBoard.h"
 
 int main();
-void PrintIntro();
 bool ContinueOrQuit();
+void PrintNewlines(int lines);
+void PrintNewScreen();
