@@ -27,10 +27,10 @@ GameBoard::~GameBoard()
 const void GameBoard::PrintGameBoard()
 {
     int pos = 0;
-    std::cout << "~                    a   b   c\n~\n";
+    std::cout << SPACES <<  "      a   b   c\n\n";
     for (int i = 0; i < 3; i++)
     {
-        std::cout << "~                " << i + 1 << "   ";
+        std::cout << SPACES << "  " << i + 1 << "   ";
         std::cout << tileArray[pos].PrintValue()
                   << " | "
                   << tileArray[pos + 1].PrintValue()
@@ -39,7 +39,7 @@ const void GameBoard::PrintGameBoard()
                   << "\n";
         if (i < 2)
         {
-            std::cout << "~                   ---+---+---\n";
+            std::cout << SPACES << "     ---+---+---\n";
         }
         pos += 3;
     }
@@ -56,14 +56,14 @@ void GameBoard::UserMove()
         tileID = XYtoID(xyInput);
         if (tileID == -1)
         {
-            std::cout << "Invalid Input. Please Try Again...\n";
-            std::cout << "> ";
+            std::cout << SPACES << "    Invalid Input. Please Try Again...\n"
+                      << SPACES << "    > ";
             continue;
         }
         if (tileArray[tileID - 1].GetValue() != 'e')
         {
-            std::cout << "Tile Not Available. Please Try Again...\n";
-            std::cout << "> ";
+            std::cout << SPACES << "    Tile Not Available. Please Try Again...\n"
+                      << SPACES << "    > ";
         }
         else
         {
@@ -313,23 +313,6 @@ int GameBoard::XYtoID(std::string inputXY)
         tileID = -1;
     }
     return tileID;
-}
-
-const void GameBoard::PrintEndState()
-{
-    if (endState == 'w')
-    {
-        std::cout << "~ Congrats! You are a WINNER!\n";
-    }
-    else if (endState == 'l')
-    {
-        std::cout << "~ Uh oh! Looks like you're a LOSER!\n";
-    }
-    else
-    {
-        std::cout << "~ (Insert Neutral statement). It's a DRAW!\n";
-    }
-    sleep(2);
 }
 
 void GameBoard::PrintNewlines(int lines)

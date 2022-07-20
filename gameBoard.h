@@ -3,6 +3,7 @@
 #include <string>
 #include <ctime>    // Enables use of time() function
 #include <unistd.h> // Enables sleep() fucntion
+#include "main.h"
 #include "tile.h"
 
 class GameBoard
@@ -31,9 +32,9 @@ public:
 
     void PrintNewlines(int lines);
     const void PrintGameBoard();
-    const void PrintEndState();
 
     const int GetMoveNum() { return moveNum; }
+    const int GetEndState() { return endState; }
     const int GetEmptyTilesSize() { return emptyTilesSize; }
 
     void LogTiles();

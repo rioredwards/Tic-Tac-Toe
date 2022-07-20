@@ -6,17 +6,9 @@ int main()
 
     // Intro Screen
     PrintNewScreen();
-    std::cout << "~               Welcome to Tic-Tac-Toe!\n";
-    PrintNewlines(12);
+    std::cout << SPACES << "Welcome to Tic-Tac-Toe!\n";
+    PrintNewlines(LINES - 4);
     sleep(2);
-    
-    // Instructions Screen
-    PrintNewScreen();
-    std::cout << "~               Instructions:\n"
-              << "~               When prompted, input your move, then press enter.\n"
-              << "~               (Ex: \"a1\" \"enter\")\n";
-    PrintNewlines(10);
-    sleep(3);
 
     // Start Game
     while (myBoard.GetMoveNum() <= 9)
@@ -24,30 +16,43 @@ int main()
         // User Move Prompt
         PrintNewScreen();
         myBoard.PrintGameBoard();
-        PrintNewlines(5);
-        std::cout << "~                  Your move:\n"
-                  << "~                  > ";
+        if (myBoard.GetMoveNum() == 1)
+        {
+            PrintNewlines(LINES - 11);
+            std::cout << SPACES << "   Your move: \n"
+                      << SPACES << "   Ex: \"a1\" \"enter\"\n"
+                      << SPACES << "   > ";
+        }
+        else
+        {
+            PrintNewlines(LINES - 10);
+            std::cout << SPACES << "    Your move:\n"
+                      << SPACES << "    > ";
+        }
         myBoard.UserMove();
+
         // User Move Print
         PrintNewScreen();
         myBoard.PrintGameBoard();
-        PrintNewlines(6);
+        PrintNewlines(LINES - 9);
         sleep(1);
         if (myBoard.CheckWinState() == 1)
         {
             break;
         }
+
         // Computer Move Prompt
         PrintNewScreen();
         myBoard.PrintGameBoard();
-        PrintNewlines(5);
-        std::cout << "~                  Computer move:\n";
+        PrintNewlines(LINES - 10);
+        std::cout << SPACES << "   Computer move:\n";
         sleep(1);
+
         // Computer Move Print
         PrintNewScreen();
         myBoard.CompMove();
         myBoard.PrintGameBoard();
-        PrintNewlines(6);
+        PrintNewlines(LINES - 9);
         sleep(1);
         if (myBoard.CheckWinState() == 1)
         {
@@ -56,7 +61,12 @@ int main()
     }
 
     // End Game
-    myBoard.PrintEndState();
+    PrintNewScreen();
+    myBoard.PrintGameBoard();
+    PrintNewlines(LINES - 10);
+    std::cout << SPACES;
+    PrintEndState(myBoard.GetEndState());
+    sleep(2);
 
     return 0;
 }
@@ -65,7 +75,7 @@ void PrintNewlines(int lines)
 {
     for (int i = 0; i < lines; i++)
     {
-        std::cout << "~\n";
+        std::cout << "\n";
     }
 }
 
@@ -73,7 +83,7 @@ void PrintNewScreen()
 {
     for (int i = 0; i < 30; i++)
     {
-        std::cout << "~\n";
+        std::cout << "\n";
     }
 }
 
@@ -107,4 +117,20 @@ bool ContinueOrQuit()
     } while ((playInput[0] != 'n') || (playInput[0] != 'y'));
 
     return result;
+}
+
+void PrintEndState(char endState)
+{
+    if (endState == 'w')
+    {
+        std::cout << "Congrats! You are a WINNER!\n";
+    }
+    else if (endState == 'l')
+    {
+        std::cout << "Uh oh! Looks like you're a LOSER!\n";
+    }
+    else
+    {
+        std::cout << "Insert Neutral statement). It's a DRAW!\n";
+    }
 }
