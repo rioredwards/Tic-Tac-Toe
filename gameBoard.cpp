@@ -46,30 +46,8 @@ const void GameBoard::PrintGameBoard()
 }
 
 // Your Move: Prompt -> Input -> Convert -> Place Tile
-void GameBoard::UserMove()
+void GameBoard::UserMove(int tileID)
 {
-    std::string xyInput = "";
-    int tileID = 0;
-    while (true)
-    {
-        getline(std::cin, xyInput);
-        tileID = XYtoID(xyInput);
-        if (tileID == -1)
-        {
-            std::cout << SPACES << "    Invalid Input. Please Try Again...\n"
-                      << SPACES << "    > ";
-            continue;
-        }
-        if (tileArray[tileID - 1].GetValue() != 'e')
-        {
-            std::cout << SPACES << "    Tile Not Available. Please Try Again...\n"
-                      << SPACES << "    > ";
-        }
-        else
-        {
-            break;
-        }
-    }
     PlaceTile(tileID, 'O');
 }
 
@@ -245,74 +223,6 @@ int GameBoard::CheckWinState()
 
     // diagonal 1: 1, 5, 9
     // diagonal 2: 3, 5, 7
-}
-
-int GameBoard::XYtoID(std::string inputXY)
-{
-    int tileID;
-
-    if (inputXY[0] == 'a')
-    {
-        if (inputXY[1] == '1')
-        { // a1 = 1
-            tileID = 1;
-        }
-        else if (inputXY[1] == '2')
-        { // a2 = 4
-            tileID = 4;
-        }
-        else if (inputXY[1] == '3')
-        { // a3 = 7
-            tileID = 7;
-        }
-        else
-        {
-            tileID = -1;
-        }
-    }
-    else if (inputXY[0] == 'b')
-    {
-        if (inputXY[1] == '1')
-        { // b1 = 2
-            tileID = 2;
-        }
-        else if (inputXY[1] == '2')
-        { // b2 = 5
-            tileID = 5;
-        }
-        else if (inputXY[1] == '3')
-        { // b3 = 8
-            tileID = 8;
-        }
-        else
-        {
-            tileID = -1;
-        }
-    }
-    else if (inputXY[0] == 'c')
-    {
-        if (inputXY[1] == '1')
-        { // c1 = 3
-            tileID = 3;
-        }
-        else if (inputXY[1] == '2')
-        { // c2 = 6
-            tileID = 6;
-        }
-        else if (inputXY[1] == '3')
-        { // c3 = 9
-            tileID = 9;
-        }
-        else
-        {
-            tileID = -1;
-        }
-    }
-    else
-    {
-        tileID = -1;
-    }
-    return tileID;
 }
 
 void GameBoard::PrintNewlines(int lines)
