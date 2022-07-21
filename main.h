@@ -15,5 +15,5 @@ int main();
 int XYtoID(std::string inputXY);
 bool ContinueOrQuit();
 void PrintNewlines(int lines);
-void PrintEndState(char endState);
+void PrintEndScreen(char endState);
 void PrintNewScreen();
