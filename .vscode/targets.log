@@ -6,8 +6,9 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # PARTICULAR PURPOSE.
 
 # This program built for i386-apple-darwin11.3.0
+ 
 
-# Make data base, printed on Tue Jul 19 00:11:15 2022
+# Make data base, printed on Thu Aug 11 11:26:12 2022
 
 # Variables
 
@@ -64,7 +65,7 @@ HOME = /Users/rioedwards
 # default
 MAKEFILEPATH = $(shell /usr/bin/xcode-select -print-path 2>/dev/null || echo /Developer)/Makefiles
 # environment
-VSCODE_CODE_CACHE_PATH = /Users/rioedwards/Library/Application Support/Code/CachedData/3b889b090b5ad5793f524b5d1d39fda662b96a2a
+VSCODE_CODE_CACHE_PATH = /Users/rioedwards/Library/Application Support/Code/CachedData/da76f93349a72022ca4670c1b84860304616aaa2
 # environment
 LOGNAME = rioedwards
 # environment
@@ -98,7 +99,7 @@ TMPDIR = /var/folders/y2/df7q2hj11wbg6ygt7sr89wcw0000gn/T/
 # automatic
 *F = $(notdir $*)
 # environment
-VSCODE_IPC_HOOK = /Users/rioedwards/Library/Application Support/Code/1.69.2-main.sock
+VSCODE_IPC_HOOK = /Users/rioedwards/Library/Application Support/Code/1.70.0-main.sock
 # environment
 MallocNanoZone = 0
 # makefile
@@ -108,7 +109,7 @@ MFLAGS = -Rrqp
 # automatic
 *D = $(patsubst %/,%,$(dir $*))
 # environment
-XPC_SERVICE_NAME = application.com.microsoft.VSCode.5624207.5624213
+XPC_SERVICE_NAME = application.com.microsoft.VSCode.6940859.6940865
 # environment
 HOMEBREW_PREFIX = /opt/homebrew
 # automatic
@@ -131,17 +132,18 @@ LC_ALL = C
 ^F = $(notdir $^)
 # default
 SUFFIXES := 
+# default
+.INCLUDE_DIRS = /usr/local/include
 # environment
 MAKELEVEL := 0
 # environment
 CLICOLOR = 1
 # environment
 LANG = C
- 
 # environment
-VSCODE_PID = 772
+VSCODE_PID = 36917
 # variable set hash-table stats:
-# Load=64/1024=6%, Rehash=0, Collisions=1/89=1%
+# Load=65/1024=6%, Rehash=0, Collisions=1/91=1%
 
 # Pattern-specific Variable Values
 
@@ -149,9 +151,9 @@ VSCODE_PID = 772
 
 # Directories
 
-# . (device 16777231, inode 5440475): 17 files, no impossibilities.
+# . (device 16777231, inode 5440475): 18 files, no impossibilities.
 
-# 17 files, no impossibilities in 1 directories.
+# 18 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -171,7 +173,7 @@ tile.cpp:
 # Not a target:
 gameBoard.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-19 00:05:52
+#  Last modified 2022-07-20 17:53:18
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -215,7 +217,7 @@ all: gameBoard.h main.h tile.h gameBoard.cpp main.cpp tile.cpp
 # Not a target:
 main.h:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-18 23:32:15
+#  Last modified 2022-07-20 18:40:13
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -233,7 +235,7 @@ makefile:
 # Not a target:
 main.cpp:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-18 23:32:16
+#  Last modified 2022-07-20 19:16:32
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -257,7 +259,7 @@ tile.h:
 # Not a target:
 gameBoard.h:
 #  Implicit rule search has been done.
-#  Last modified 2022-07-18 23:23:34
+#  Last modified 2022-07-20 17:53:15
 #  File has been updated.
 #  Successfully updated.
 # variable set hash-table stats:
@@ -276,6 +278,6 @@ gameBoard.h:
 # strcache size: total = 4096 / max = 4096 / min = 4096 / avg = 4096
 # strcache free: total = 4087 / max = 4087 / min = 4087 / avg = 4087
 
-# Finished Make data base on Tue Jul 19 00:11:15 2022
+# Finished Make data base on Thu Aug 11 11:26:12 2022
 
  

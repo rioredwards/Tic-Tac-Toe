@@ -158,66 +158,55 @@ int XYtoID(std::string inputXY)
 {
     int tileID;
 
-    if (inputXY[0] == 'a')
-    {
-        if (inputXY[1] == '1')
-        { // a1 = 1
-            tileID = 1;
-        }
-        else if (inputXY[1] == '2')
-        { // a2 = 4
-            tileID = 4;
-        }
-        else if (inputXY[1] == '3')
-        { // a3 = 7
-            tileID = 7;
-        }
-        else
-        {
+    switch (inputXY[0]) {
+        case 'a':
+            switch (inputXY[1]) {
+                case '1':
+                    tileID = 1;
+                    break;
+                case '2':
+                    tileID = 4;
+                    break;
+                case '3':
+                    tileID = 7;
+                    break;
+                default:
+                    tileID = -1;
+            }
+            break;
+        case 'b':
+            switch (inputXY[1]) {
+                case '1':
+                    tileID = 2;
+                    break;
+                case '2':
+                    tileID = 5;
+                    break;
+                case '3':
+                    tileID = 8;
+                    break;
+                default:
+                    tileID = -1;
+            }
+            break;
+        case 'c':
+        std::cout << "c Input\n";
+            switch (inputXY[1]) {
+                case '1':
+                    tileID = 3;
+                    break;
+                case '2':
+                    tileID = 6;
+                    break;
+                case '3':
+                    tileID = 9;
+                    break;
+                default:
+                    tileID = -1;
+            }
+            break;
+        default:
             tileID = -1;
-        }
-    }
-    else if (inputXY[0] == 'b')
-    {
-        if (inputXY[1] == '1')
-        { // b1 = 2
-            tileID = 2;
-        }
-        else if (inputXY[1] == '2')
-        { // b2 = 5
-            tileID = 5;
-        }
-        else if (inputXY[1] == '3')
-        { // b3 = 8
-            tileID = 8;
-        }
-        else
-        {
-            tileID = -1;
-        }
-    }
-    else if (inputXY[0] == 'c')
-    {
-        if (inputXY[1] == '1')
-        { // c1 = 3
-            tileID = 3;
-        }
-        else if (inputXY[1] == '2')
-        { // c2 = 6
-            tileID = 6;
-        }
-        else if (inputXY[1] == '3')
-        { // c3 = 9
-            tileID = 9;
-        }
-        else
-        {
-            tileID = -1;
-        }
-    }
-    else
-    {
-        tileID = -1;
     }
     return tileID;
 }
