@@ -4,13 +4,17 @@
 
 A classic game of Tic Tac Toe for the Command Line.
 
+## Made with
+
+![C++](https://img.shields.io/badge/-C++-00599C?logo=cplusplus&logoColor=white&style=for-the-badge)&nbsp;![GCC](https://img.shields.io/badge/-GCC-A42E2B?logo=gnu&logoColor=white&style=for-the-badge)&nbsp;
+
 ## Features
 
-- Designed using OOP principles
-- Intuitive Command Line Interface
-- Screen "refreshes", giving the illusion of animation frames
-- Play against the computer
-- All user input is validated
+* Designed using OOP principles
+* Intuitive Command Line Interface
+* Screen "refreshes", giving the illusion of animation frames
+* Play against the computer
+* All user input is validated
 
 ## Preview
 
@@ -39,10 +43,11 @@ make
 
 ## Authors
 
-- [Rio Edwards](https://github.com/rioredwards)
+* [Rio Edwards](https://github.com/rioredwards)
 
 ## Acknowledgements
 
-- [readme.so](https://readme.so/editor)
-- [Simple Icons](https://simpleicons.org/)
-- [shields.io](https://shields.io/)
+* [readme.so](https://readme.so/editor)
+* [Simple Icons](https://simpleicons.org/)
+* [shields.io](https://shields.io/)
+
